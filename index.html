@@ -208,5 +208,24 @@
     </footer>
     
     <script src="script.js"></script>
+    <div class="ai-chat-container" id="ai-chat-container">
+    <div class="chat-header">
+        <h4>Asisten AI Ergus</h4>
+        <button class="close-chat-btn" id="close-chat-btn">×</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+        <div class="message ai-message">
+            <p>Halo! Saya asisten AI. Ada yang bisa saya bantu? Anda bisa bertanya tentang apa saja.</p>
+        </div>
+    </div>
+    <form class="chat-input-form" id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ketik pertanyaan Anda..." autocomplete="off">
+        <button type="submit" id="send-btn"><i class='bx bxs-send'></i></button>
+    </form>
+</div>
+
+<button class="ai-chat-button" id="ai-chat-button">
+    <i class='bx bxs-bot'></i>
+</button>
 </body>
 </html>
