@@ -145,3 +145,93 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (form) { form.addEventListener("submit", handleSubmit) }
 });
+
+// ============================================== //
+// ============ LOGIKA AI CHATBOT =============== //
+// ============================================== //
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Ambil semua elemen yang kita butuhkan
+    const chatButton = document.getElementById('ai-chat-button');
+    const chatContainer = document.getElementById('ai-chat-container');
+    const closeChatBtn = document.getElementById('close-chat-btn');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Tampilkan/sembunyikan jendela chat
+    chatButton.addEventListener('click', () => {
+        chatContainer.classList.toggle('active');
+    });
+
+    closeChatBtn.addEventListener('click', () => {
+        chatContainer.classList.remove('active');
+    });
+
+    // Kirim pesan saat form disubmit
+    chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const userInput = chatInput.value.trim();
+        if (!userInput) return;
+
+        // Tampilkan pesan pengguna di chat
+        addMessage(userInput, 'user');
+        chatInput.value = '';
+
+        // Tampilkan indikator loading
+        const loadingIndicator = addMessage('Mengetik...', 'ai', true);
+        
+        try {
+            // =================================================================
+            // PENTING: Panggilan ke API Backend Anda, bukan langsung ke Google
+            // =================================================================
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt: userInput }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Gagal mendapatkan respons dari server.');
+            }
+
+            const data = await response.json();
+            
+            // Hapus indikator loading
+            loadingIndicator.remove();
+
+            // Tampilkan respons dari AI
+            // Kita gunakan Marked.js untuk mengubah Markdown menjadi HTML jika ada
+            // (Ini opsional tapi sangat direkomendasikan)
+            addMessage(data.text, 'ai');
+
+        } catch (error) {
+            console.error('Error:', error);
+            // Hapus indikator loading dan tampilkan pesan error
+            loadingIndicator.remove();
+            addMessage('Maaf, terjadi kesalahan. Coba lagi nanti.', 'ai');
+        }
+    });
+
+    // Fungsi untuk menambahkan pesan ke jendela chat
+    function addMessage(text, sender, isLoading = false) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', `${sender}-message`);
+        
+        if (isLoading) {
+             messageElement.classList.add('loading');
+        }
+
+        // Untuk keamanan, ubah teks menjadi lebih aman sebelum dimasukkan ke HTML
+        const p = document.createElement('p');
+        p.textContent = text;
+        messageElement.appendChild(p);
+        
+        chatMessages.appendChild(messageElement);
+        // Otomatis scroll ke pesan terbaru
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return messageElement;
+    }
+});
