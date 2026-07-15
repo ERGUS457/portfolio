@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergus – Web Developer | Alumni Politeknik Negeri Sambas</title>
+    <meta name="description" content="Portfolio Ergus – Alumni D3 Manajemen Informatika Politeknik Negeri Sambas. Web Developer dengan keahlian Laravel, CodeIgniter, PHP, dan pengalaman organisasi yang luas.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="noise-overlay"></div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- CURSOR CUSTOM -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursor-trail"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="main-header">
+        <nav>
+            <a href="#hero" class="logo">
+                <span class="logo-bracket">&lt;</span>Ergus<span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#skills">Keahlian</a></li>
+                <li><a href="#education">Pendidikan</a></li>
+                <li><a href="#projects">Proyek</a></li>
+                <li><a href="#experience">Pengalaman</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="nav-controls">
+                <div class="theme-switch-wrapper">
+                    <i class='bx bxs-sun' id="icon-sun"></i>
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <i class='bx bxs-moon' id="icon-moon"></i>
+                </div>
+                <!-- Tombol hamburger -->
+                <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu navigasi" aria-expanded="false">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ===== HERO SECTION ===== -->
+        <section id="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span>Tersedia untuk kolaborasi & kerja</span>
+                    </div>
+                    <p class="hero-greeting">Halo, saya</p>
+                    <h1>ERGUS</h1>
+                    <div class="dynamic-wrapper">
+                        <h2 id="dynamic-text" class="dynamic-text"></h2>
+                    </div>
+                    <p class="intro">Alumni D3 Manajemen Informatika Politeknik Negeri Sambas dengan keahlian pengembangan web menggunakan PHP, Laravel, dan CodeIgniter. Berfokus membangun produk digital yang fungsional, elegan, dan berdampak nyata.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-num" data-target="5">0</span>
+                            <span class="stat-label">Proyek</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num" data-target="12">0</span>
+                            <span class="stat-label">Org. Aktif</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num" data-target="3">0</span>
+                            <span class="stat-label">Tahun Coding</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="CV Ergus.pdf" download class="btn btn-primary">
+                            <i class='bx bxs-download'></i> Download CV
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class='bx bx-send'></i> Hubungi Saya
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-wrap">
+                    <div class="hero-image-glow"></div>
+                    <div class="hero-image">
+                        <img src="images/profil.JPG" alt="Foto Profil Ergus">
+                    </div>
+                    <div class="hero-floating-badge top-badge">
+                        <i class='bx bxl-github'></i> GitHub Active
+                    </div>
+                    <div class="hero-floating-badge bottom-badge">
+                        <i class='bx bx-code-alt'></i> Laravel & PHP
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span>Scroll ke bawah</span>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT SECTION ===== -->
+        <section id="about" class="fade-in">
+            <div class="section-label">TENTANG SAYA</div>
+            <h2>Siapa <span class="highlight">Ergus</span>?</h2>
+            <div class="about-grid">
+                <div class="about-text-col">
+                    <p class="about-quote">"Menjadi seseorang yang bermanfaat untuk orang lain dan diri sendiri."</p>
+                    <p>Saya adalah Alumni <strong>D3 Manajemen Informatika, Politeknik Negeri Sambas</strong> (A.Md.Kom). Dengan minat besar pada teknologi, saya berfokus pada pengembangan web dan telah menyelesaikan Tugas Akhir berupa <strong>Rancang Bangun Aplikasi Sistem Penerbitan SKHP Alat UTTP pada UPT Metrologi Legal Kota Singkawang Berbasis Website</strong>.</p>
+                    <p>Saya senang memecahkan masalah, bekerja dalam tim, dan berpengalaman dalam mengelola tim dengan baik melalui berbagai kegiatan organisasi kampus.</p>
+                    <div class="about-contact-info">
+                        <a href="mailto:ergus87@gmail.com" class="contact-chip">
+                            <i class='bx bx-envelope'></i>
+                            <span>ergus87@gmail.com</span>
+                        </a>
+                        <a href="https://wa.me/6283140063145" target="_blank" rel="noopener" class="contact-chip">
+                            <i class='bx bxl-whatsapp'></i>
+                            <span>0831-4006-3145</span>
+                        </a>
+                        <a href="https://ergusportfolio.vercel.app/" target="_blank" rel="noopener" class="contact-chip">
+                            <i class='bx bx-globe'></i>
+                            <span>ergusportfolio.vercel.app</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="about-cards-col">
+                    <div class="about-info-card glass-card">
+                        <i class='bx bx-certification about-card-icon'></i>
+                        <h4>Sertifikasi</h4>
+                        <p><strong>Junior Web Developer</strong> – Digital Talent Scholarship 2025</p>
+                    </div>
+                    <div class="about-info-card glass-card">
+                        <i class='bx bx-trophy about-card-icon'></i>
+                        <h4>Prestasi</h4>
+                        <p>Juara I Syarhil Qur'an MAN I Sambas 2023 &amp; Juara I Tilawah Dusun Sembuai Segantong 2017.</p>
+                    </div>
+                    <div class="about-info-card glass-card">
+                        <i class='bx bx-group about-card-icon'></i>
+                        <h4>Organisasi</h4>
+                        <p>Aktif di 12+ kepanitiaan &amp; organisasi kampus. Ketua Umum ILC 2025–2026.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS SECTION ===== -->
+        <section id="skills" class="fade-in">
+            <div class="section-label">KEAHLIAN</div>
+            <h2>Tech <span class="highlight">Stack</span></h2>
+            <div class="skills-container">
+                <div class="skill-category glass-card">
+                    <div class="skill-cat-header">
+                        <i class='bx bx-code-alt'></i>
+                        <h3>Keterampilan Teknis</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag featured">PHP</span>
+                        <span class="skill-tag featured">Laravel</span>
+                        <span class="skill-tag featured">CodeIgniter</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Git & GitHub</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card">
+                    <div class="skill-cat-header">
+                        <i class='bx bx-desktop'></i>
+                        <h3>Operasional & Tools</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag featured">Operasi Komputer</span>
+                        <span class="skill-tag featured">Kamera Canon 600D</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">XAMPP</span>
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">MS Office</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card">
+                    <div class="skill-cat-header">
+                        <i class='bx bx-user-check'></i>
+                        <h3>Keterampilan Non-Teknis</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag featured">Manajemen Tim</span>
+                        <span class="skill-tag featured">Kepemimpinan</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Komunikasi</span>
+                        <span class="skill-tag">Event Organizer</span>
+                        <span class="skill-tag">Dokumentasi</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EDUCATION SECTION ===== -->
+        <section id="education" class="fade-in">
+            <div class="section-label">PENDIDIKAN</div>
+            <h2>Riwayat <span class="highlight">Pendidikan</span></h2>
+            <div class="education-timeline">
+                <div class="edu-item active-edu">
+                    <div class="edu-year-badge">2023 – 2026</div>
+                    <div class="edu-card glass-card">
+                        <div class="edu-icon"><i class='bx bxs-graduation'></i></div>
+                        <div class="edu-info">
+                            <h4>Politeknik Negeri Sambas</h4>
+                            <p class="edu-major">D3 Manajemen Informatika – A.Md.Kom</p>
+                            <p>Mendalami pengembangan web, database, dan manajemen sistem informasi.</p>
+                            <div class="edu-detail-box">
+                                <strong>Tugas Akhir:</strong> Rancang Bangun Aplikasi Sistem Penerbitan SKHP Alat UTTP pada UPT Metrologi Legal Kota Singkawang Berbasis Website.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-year-badge">2020 – 2023</div>
+                    <div class="edu-card glass-card">
+                        <div class="edu-icon"><i class='bx bxs-school'></i></div>
+                        <div class="edu-info">
+                            <h4>MAN 1 Sambas</h4>
+                            <p class="edu-major">Jurusan MIPA</p>
+                            <p>Meraih prestasi Juara I Lomba Syarhil Qur'an MAN I Sambas 2023 dan aktif dalam kegiatan ekstrakurikuler.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-year-badge">2017 – 2020</div>
+                    <div class="edu-card glass-card">
+                        <div class="edu-icon"><i class='bx bxs-school'></i></div>
+                        <div class="edu-info">
+                            <h4>SMPN 5 Teluk Keramat</h4>
+                            <p class="edu-major">Sekolah Menengah Pertama</p>
+                            <p>Menyelesaikan pendidikan menengah pertama dengan aktif berpartisipasi dalam kegiatan sekolah.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-year-badge">2010 – 2017</div>
+                    <div class="edu-card glass-card">
+                        <div class="edu-icon"><i class='bx bxs-school'></i></div>
+                        <div class="edu-info">
+                            <h4>SDN 36 Sembuai Segantong</h4>
+                            <p class="edu-major">Sekolah Dasar</p>
+                            <p>Menyelesaikan pendidikan dasar. Meraih Juara I Lomba Tilawah Dusun Sembuai Segantong 2017.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS SECTION ===== -->
+        <section id="projects" class="fade-in">
+            <div class="section-label">PROYEK</div>
+            <h2>Karya <span class="highlight">Terbaik</span></h2>
+            <div class="projects-grid">
+                <!-- Proyek 1 -->
+                <div class="project-card glass-card">
+                    <a href="https://www.youtube.com/watch?v=C2FofYKtrOM" target="_blank" rel="noopener" class="project-thumbnail-link">
+                        <img src="https://img.youtube.com/vi/C2FofYKtrOM/hqdefault.jpg" alt="Sistem Informasi Panti Asuhan" class="project-thumbnail">
+                        <div class="play-icon-overlay"><i class='bx bx-play-circle'></i></div>
+                        <div class="project-number">01</div>
+                    </a>
+                    <div class="project-info">
+                        <h4>Sistem Informasi Panti Asuhan</h4>
+                        <p>Sistem informasi berbasis web untuk pengelolaan data anak asuh, donatur, dan laporan keuangan panti asuhan secara digital.</p>
+                        <div class="project-tags">
+                            <span>PHP</span><span>Laravel</span><span>MySQL</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=C2FofYKtrOM" target="_blank" rel="noopener" class="project-link">
+                            Tonton Demo <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Proyek 2 -->
+                <div class="project-card glass-card">
+                    <a href="https://www.youtube.com/watch?v=PzLXgUji89E" target="_blank" rel="noopener" class="project-thumbnail-link">
+                        <img src="https://img.youtube.com/vi/PzLXgUji89E/hqdefault.jpg" alt="Sistem Manajemen Inventaris UKMI Fastabiqul Khairat" class="project-thumbnail">
+                        <div class="play-icon-overlay"><i class='bx bx-play-circle'></i></div>
+                        <div class="project-number">02</div>
+                    </a>
+                    <div class="project-info">
+                        <h4>Manajemen Inventaris UKMI Fastabiqul Khairat</h4>
+                        <p>Aplikasi pengelolaan inventaris barang di sekretariat UKMI Fastabiqul Khairat Politeknik Negeri Sambas dengan fitur CRUD lengkap.</p>
+                        <div class="project-tags">
+                            <span>PHP</span><span>CodeIgniter</span><span>MySQL</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=PzLXgUji89E" target="_blank" rel="noopener" class="project-link">
+                            Tonton Demo <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Proyek 3 -->
+                <div class="project-card glass-card">
+                    <a href="https://www.youtube.com/watch?v=rqz3MNKvMf4" target="_blank" rel="noopener" class="project-thumbnail-link">
+                        <img src="https://img.youtube.com/vi/rqz3MNKvMf4/hqdefault.jpg" alt="Aplikasi Pengelolaan Desa Berbasis PBO" class="project-thumbnail">
+                        <div class="play-icon-overlay"><i class='bx bx-play-circle'></i></div>
+                        <div class="project-number">03</div>
+                    </a>
+                    <div class="project-info">
+                        <h4>Website Berbasis PBO</h4>
+                        <p>Proyek akademik pengembangan website menggunakan paradigma Pemrograman Berorientasi Objek (PBO) untuk pengelolaan data.</p>
+                        <div class="project-tags">
+                            <span>PHP OOP</span><span>MySQL</span><span>Akademik</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=rqz3MNKvMf4" target="_blank" rel="noopener" class="project-link">
+                            Tonton Demo <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Proyek 4 – Tugas Akhir -->
+                <div class="project-card glass-card featured-project">
+                    <div class="project-thumbnail-link" style="position:relative;overflow:hidden;">
+                        <div class="ta-placeholder">
+                            <i class='bx bx-file-blank'></i>
+                            <span>Tugas Akhir</span>
+                        </div>
+                        <div class="project-number">04</div>
+                    </div>
+                    <div class="project-info">
+                        <div class="ta-badge"><i class='bx bxs-star'></i> Tugas Akhir</div>
+                        <h4>Sistem Penerbitan SKHP Alat UTTP</h4>
+                        <p>Rancang Bangun Aplikasi Sistem Penerbitan SKHP Alat UTTP pada <strong>UPT Metrologi Legal Kota Singkawang</strong> Berbasis Website.</p>
+                        <div class="project-tags">
+                            <span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap</span>
+                        </div>
+                        <span class="project-link" style="color:var(--text-secondary);cursor:default;">
+                            <i class='bx bx-lock-alt'></i> Proyek Institusi
+                        </span>
+                    </div>
+                </div>
+                <!-- Proyek 5 -->
+                <div class="project-card glass-card">
+                    <a href="https://www.youtube.com/watch?v=kLbmQA7hBPY" target="_blank" rel="noopener" class="project-thumbnail-link">
+                        <img src="https://img.youtube.com/vi/kLbmQA7hBPY/hqdefault.jpg" alt="Tutorial Instalasi Windows" class="project-thumbnail">
+                        <div class="play-icon-overlay"><i class='bx bx-play-circle'></i></div>
+                        <div class="project-number">05</div>
+                    </a>
+                    <div class="project-info">
+                        <h4>Tutorial Instalasi Windows</h4>
+                        <p>Panduan visual langkah-demi-langkah yang komprehensif untuk melakukan instalasi sistem operasi Windows dari awal hingga selesai.</p>
+                        <div class="project-tags">
+                            <span>Tutorial</span><span>Windows OS</span><span>Dokumentasi</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=kLbmQA7hBPY" target="_blank" rel="noopener" class="project-link">
+                            Tonton Video <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXPERIENCE SECTION ===== -->
+        <section id="experience" class="fade-in">
+            <div class="section-label">PENGALAMAN</div>
+            <h2>Perjalanan <span class="highlight">Karier & Organisasi</span></h2>
+            <div class="exp-tabs-wrapper">
+                <div class="exp-tabs">
+                    <button class="exp-tab active" data-tab="organisasi">
+                        <i class='bx bx-group'></i> Organisasi
+                    </button>
+                    <button class="exp-tab" data-tab="prestasi">
+                        <i class='bx bx-trophy'></i> Prestasi & Sertifikasi
+                    </button>
+                </div>
+
+                <!-- Tab Organisasi -->
+                <div class="exp-tab-content active" id="tab-organisasi">
+                    <div class="timeline">
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025 – 2026</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge leader">Ketua Umum</div>
+                                <h4>Ketua Umum International Language Community (ILC)</h4>
+                                <p>Memimpin dan mengkoordinasikan seluruh kegiatan International Language Community di Politeknik Negeri Sambas, bertanggung jawab atas strategi, program, dan perkembangan organisasi.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2024 – 2025</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge leader">Ketua Bidang</div>
+                                <h4>Ketua Bidang Mitra &amp; Kerjasama HMJMI</h4>
+                                <p>Bertanggung jawab atas hubungan dan kerjasama dengan pihak eksternal kampus untuk kepentingan Himpunan Mahasiswa Jurusan Manajemen Informatika.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2026</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge coord">CO Humas</div>
+                                <h4>CO Humas Milad &amp; SuperCamp GMSPP 2026</h4>
+                                <p>Bertugas sebagai koordinator hubungan masyarakat dalam kegiatan Milad dan SuperCamp Gerakan Mahasiswa Sambas Politeknik Negeri Sambas Penajam Paser (GMSPP).</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2026</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge coord">CO Humas</div>
+                                <h4>CO Humas Pesantren Kilat GMSPP 2026</h4>
+                                <p>Bertugas sebagai koordinator hubungan masyarakat dalam program Pesantren Kilat yang diselenggarakan GMSPP.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge leader">Ketua Panitia</div>
+                                <h4>Ketua Panitia UKMI Berbagi 2025</h4>
+                                <p>Memimpin seluruh rangkaian kegiatan sosial UKMI Berbagi, dari perencanaan, koordinasi tim, eksekusi acara, hingga pelaporan akhir kegiatan.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge coord">CO Humas</div>
+                                <h4>CO Humas Upgrading HMJMI 2025</h4>
+                                <p>Bertugas sebagai koordinator hubungan masyarakat dalam kegiatan Upgrading anggota HMJMI Politeknik Negeri Sambas.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge coord">CO Acara</div>
+                                <h4>CO Acara Milad IMTEK 2025</h4>
+                                <p>Berperan sebagai koordinator acara dalam perayaan Milad IMTEK (Informatika dan Teknologi) Politeknik Negeri Sambas.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge coord">CO Perlengkapan</div>
+                                <h4>CO Perlengkapan Meet and Greet ILC 2025</h4>
+                                <p>Bertanggung jawab atas koordinasi perlengkapan dalam kegiatan Meet and Greet International Language Community.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2024</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge leader">Ketua Panitia</div>
+                                <h4>Ketua Panitia Musyawarah Besar ILC 2024</h4>
+                                <p>Mengoordinasikan seluruh bidang kepanitiaan untuk kelancaran Musyawarah Besar International Language Community.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2024</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge member">PIC</div>
+                                <h4>PIC One Night Get Together HMJMI 2024</h4>
+                                <p>Menjadi Person In Charge untuk kegiatan bonding anggota baru HMJMI Politeknik Negeri Sambas.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2024</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge coord">CO PDD</div>
+                                <h4>CO PDD Pekan UKMI 2024</h4>
+                                <p>Bertugas sebagai koordinator Publikasi, Dekorasi, dan Dokumentasi (PDD) dalam kegiatan Pekan UKMI Fastabiqul Khairat.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2021 – 2023</div>
+                            <div class="timeline-content glass-card">
+                                <div class="tl-badge member">Panitia</div>
+                                <h4>Panitia 17 Agustus – Dusun Sembuai Segantong</h4>
+                                <p>Terlibat aktif dalam kepanitiaan peringatan HUT Kemerdekaan RI di Dusun Sembuai Segantong selama 3 tahun berturut-turut (2021, 2022, 2023).</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Tab Prestasi -->
+                <div class="exp-tab-content" id="tab-prestasi">
+                    <div class="achievements-grid">
+                        <div class="achievement-card glass-card">
+                            <div class="ach-icon cert"><i class='bx bxs-badge-check'></i></div>
+                            <div class="ach-info">
+                                <span class="ach-rank">Sertifikasi 2025</span>
+                                <h4>Junior Web Developer</h4>
+                                <p>Digital Talent Scholarship 2025 – Sertifikasi resmi kompetensi pengembangan web tingkat junior dari program beasiswa digital nasional.</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card glass-card">
+                            <div class="ach-icon gold"><i class='bx bx-trophy'></i></div>
+                            <div class="ach-info">
+                                <span class="ach-rank">Juara I – 2023</span>
+                                <h4>Lomba Syarhil Qur'an MAN I Sambas</h4>
+                                <p>Meraih juara pertama dalam perlombaan Syarhil Qur'an tingkat madrasah MAN I Sambas pada tahun 2023.</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card glass-card">
+                            <div class="ach-icon gold"><i class='bx bx-trophy'></i></div>
+                            <div class="ach-info">
+                                <span class="ach-rank">Juara I – 2017</span>
+                                <h4>Lomba Tilawah Qur'an</h4>
+                                <p>Meraih juara pertama dalam lomba Tilawah Qur'an tingkat Dusun Sembuai Segantong pada tahun 2017.</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card glass-card">
+                            <div class="ach-icon blue"><i class='bx bx-medal'></i></div>
+                            <div class="ach-info">
+                                <span class="ach-rank">Kompetisi 2025</span>
+                                <h4>INNOVILLEAGUE 2025</h4>
+                                <p>Berpartisipasi dalam Lomba INNOVILLEAGUE 2025, kompetisi inovasi dan teknologi tingkat mahasiswa.</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card glass-card">
+                            <div class="ach-icon blue"><i class='bx bx-code-block'></i></div>
+                            <div class="ach-info">
+                                <span class="ach-rank">Proyek Akademik</span>
+                                <h4>Sistem Penerbitan SKHP Alat UTTP</h4>
+                                <p>Tugas Akhir: Rancang Bangun Aplikasi Sistem Penerbitan SKHP Alat UTTP pada UPT Metrologi Legal Kota Singkawang Berbasis Website.</p>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card glass-card">
+                            <div class="ach-icon blue"><i class='bx bxl-php'></i></div>
+                            <div class="ach-info">
+                                <span class="ach-rank">Proyek Akademik</span>
+                                <h4>Website dengan Laravel &amp; CodeIgniter</h4>
+                                <p>Berhasil membangun website fungsional menggunakan dua framework PHP populer, Laravel dan CodeIgniter, sebagai capaian akademik.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT SECTION ===== -->
+        <section id="contact" class="fade-in">
+            <div class="section-label">KONTAK</div>
+            <h2>Mari <span class="highlight">Terhubung</span></h2>
+            <p class="contact-subtitle">Punya proyek menarik atau ingin berkolaborasi? Saya selalu terbuka untuk diskusi dan peluang baru. Isi formulir di bawah atau hubungi langsung melalui platform pilihan Anda.</p>
+
+            <div class="contact-wrapper">
+                <div class="contact-info-col">
+                    <a href="mailto:ergus87@gmail.com" class="contact-info-card glass-card">
+                        <i class='bx bx-envelope'></i>
+                        <div>
+                            <span class="contact-info-label">Email</span>
+                            <span class="contact-info-value">ergus87@gmail.com</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/6283140063145" target="_blank" rel="noopener" class="contact-info-card glass-card">
+                        <i class='bx bxl-whatsapp'></i>
+                        <div>
+                            <span class="contact-info-label">WhatsApp</span>
+                            <span class="contact-info-value">0831-4006-3145</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/ERGUS457" target="_blank" rel="noopener" class="contact-info-card glass-card">
+                        <i class='bx bxl-github'></i>
+                        <div>
+                            <span class="contact-info-label">GitHub</span>
+                            <span class="contact-info-value">github.com/ERGUS457</span>
+                        </div>
+                    </a>
+                    <a href="https://ergusportfolio.vercel.app/" target="_blank" rel="noopener" class="contact-info-card glass-card">
+                        <i class='bx bx-globe'></i>
+                        <div>
+                            <span class="contact-info-label">Portfolio Online</span>
+                            <span class="contact-info-value">ergusportfolio.vercel.app</span>
+                        </div>
+                    </a>
+                    <div class="social-links-row">
+                        <a href="https://github.com/ERGUS457" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+                            <i class='bx bxl-github'></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=100077115692940" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+                            <i class='bx bxl-facebook'></i>
+                        </a>
+                        <a href="https://www.instagram.com/ergus136?igsh=YTNrczQ0YTkyZGdn" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+                            <i class='bx bxl-instagram'></i>
+                        </a>
+                        <a href="https://wa.me/6283140063145" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+                            <i class='bx bxl-whatsapp'></i>
+                        </a>
+                    </div>
+                </div>
+
+                <form id="contact-form" class="contact-form-col glass-card" action="https://formspree.io/f/xzzvrqgr" method="POST">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" required placeholder="Nama Anda">
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="email@anda.com">
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="subject">Subjek</label>
+                        <input type="text" id="subject" name="subject" placeholder="Subjek pesan Anda">
+                    </div>
+                    <div class="form-field">
+                        <label for="message">Pesan</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tuliskan pesan Anda di sini..."></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="btn btn-primary btn-submit">
+                        <i class='bx bxs-send'></i> Kirim Pesan
+                    </button>
+                    <p id="form-status"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <a href="#hero" class="footer-logo">
+                <span class="logo-bracket">&lt;</span>Ergus<span class="logo-bracket">/&gt;</span>
+            </a>
+            <p>Dibuat dengan <i class='bx bxs-heart' style="color:#f87171;vertical-align:middle;"></i> oleh Ergus &copy; 2026</p>
+            <div class="footer-links">
+                <a href="#about">Tentang</a>
+                <a href="#projects">Proyek</a>
+                <a href="#experience">Pengalaman</a>
+                <a href="#contact">Kontak</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== AI CHATBOT ===== -->
+    <div class="ai-chat-container" id="ai-chat-container" role="dialog" aria-label="Asisten AI Ergus">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar"><i class='bx bxs-bot'></i></div>
+                <div>
+                    <h4>Asisten Ergus</h4>
+                    <span class="chat-status">Online</span>
+                </div>
+            </div>
+            <button class="close-chat-btn" id="close-chat-btn" aria-label="Tutup chat">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chat-messages" role="log" aria-live="polite">
+            <div class="message ai-message">
+                <p>Halo! 👋 Saya asisten Ergus. Tanya apa saja tentang Ergus — keahlian, proyek, pendidikan, pengalaman organisasi, atau cara menghubunginya!</p>
+            </div>
+        </div>
+        <form class="chat-input-form" id="chat-form" autocomplete="off">
+            <input type="text" id="chat-input" placeholder="Ketik pertanyaan Anda..." autocomplete="off" maxlength="500">
+            <button type="submit" id="send-btn" aria-label="Kirim pesan">
+                <i class='bx bxs-send'></i>
+            </button>
+        </form>
+    </div>
+
+    <button class="ai-chat-button" id="ai-chat-button" aria-label="Buka asisten AI" aria-expanded="false">
+        <i class='bx bxs-bot' id="chat-btn-icon"></i>
+        <span class="chat-pulse"></span>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

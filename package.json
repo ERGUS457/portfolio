@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-ai-chatbot",
+  "version": "1.0.0",
+  "description": "Portfolio with AI Chatbot function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ergus",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.14.1"
+  }
+}
