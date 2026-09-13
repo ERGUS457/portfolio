@@ -343,9 +343,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ta_link:     'https://sipskhp.vercel.app/',
         keahlian:    ['PHP', 'Laravel', 'CodeIgniter', 'HTML5', 'CSS3', 'JavaScript', 'MySQL', 'Git', 'GitHub'],
         sertifikasi: 'Junior Web Developer – Digital Talent Scholarship 2025',
-        prestasi:    ['Juara I Syarhil Qur\'an MAN I Sambas 2023', 'Juara I Tilawah Dusun Sembua' Segantong 2017', 'Peserta INNOVILLEAGUE 2025'],
+        prestasi:    ['Juara I Syarhil Qur\'an MAN I Sambas 2023', 'Juara I Tilawah Dusun Sembua\' Segantong 2017', 'Peserta INNOVILLEAGUE 2025'],
         proyek:      ['Sistem Informasi Panti Asuhan', 'Manajemen Inventaris UKMI Fastabiqul Khairat', 'Website Berbasis PBO', 'Sistem Penerbitan SKHP Alat UTTP (Tugas Akhir)'],
-        organisasi:  ['Ketua Umum ILC 2025–2026', 'Ketua Bidang Mitra & Kerjasama HMJMI 2024–2025', 'Ketua Panitia UKMI Berbagi 2025', 'Ketua Panitia Musyawarah Besar ILC 2024', 'CO Humas Milad & SuperCamp GMSPP 2026', 'CO Humas Pesantren Kilat GMSPP 2026', 'CO Humas Upgrading HMJMI 2025', 'CO Acara MILAD IMTEK 2025', 'CO PDD Pekan UKMI 2024', 'CO Perlengkapan Meet and Greet ILC 2025', 'PIC One Night Get Together HMJMI 2024', 'Panitia 17 Agustus Dusun Sembua' Segantong 2021–2023'],
+        organisasi:  ['Ketua Umum ILC 2025–2026', 'Ketua Bidang Mitra & Kerjasama HMJMI 2024–2025', 'Ketua Panitia UKMI Berbagi 2025', 'Ketua Panitia Musyawarah Besar ILC 2024', 'CO Humas Milad & SuperCamp GMSPP 2026', 'CO Humas Pesantren Kilat GMSPP 2026', 'CO Humas Upgrading HMJMI 2025', 'CO Acara MILAD IMTEK 2025', 'CO PDD Pekan UKMI 2024', 'CO Perlengkapan Meet and Greet ILC 2025', 'PIC One Night Get Together HMJMI 2024', 'Panitia 17 Agustus Dusun Sembua\' Segantong 2021–2023'],
         tujuan:      'Menjadi seseorang yang bermanfaat untuk orang lain dan diri sendiri.',
         lokasi:      'Sambas, Kalimantan Barat',
     };
