@@ -340,6 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
         portfolio:   'https://ergusportfolio.vercel.app/',
         pendidikan:  'Alumni D3 Manajemen Informatika, Politeknik Negeri Sambas (2023–2026)',
         ta:          'Rancang Bangun Aplikasi Sistem Penerbitan SKHP Alat UTTP pada UPT Metrologi Legal Kota Singkawang Berbasis Website',
+        ta_link:     'https://sipskhp.vercel.app/',
         keahlian:    ['PHP', 'Laravel', 'CodeIgniter', 'HTML5', 'CSS3', 'JavaScript', 'MySQL', 'Git', 'GitHub'],
         sertifikasi: 'Junior Web Developer – Digital Talent Scholarship 2025',
         prestasi:    ['Juara I Syarhil Qur\'an MAN I Sambas 2023', 'Juara I Tilawah Dusun Sembua' Segantong 2017', 'Peserta INNOVILLEAGUE 2025'],
@@ -380,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Tugas Akhir
         if (/tugas akhir|ta|skripsi|thesis|skhp|metrologi|singkawang/.test(q)) {
-            return `Tugas Akhir Ergus berjudul:\n📝 *"${KB.ta}"*\n\nProyek ini merupakan sistem berbasis website yang dikembangkan untuk UPT Metrologi Legal Kota Singkawang menggunakan teknologi Laravel dan PHP.`;
+            return `Tugas Akhir Ergus berjudul:\n📝 *"${KB.ta}"*\n\nProyek ini merupakan sistem berbasis website yang dikembangkan untuk UPT Metrologi Legal Kota Singkawang menggunakan teknologi Laravel dan PHP.\n🔗 Lihat live: ${url}`;
         }
 
         // Proyek
