@@ -398,9 +398,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return `Prestasi dan sertifikasi Ergus:\n🏆 Juara I Syarhil Qur'an MAN I Sambas (2023)\n🏆 Juara I Lomba Tilawah Dusun Sembua' Segantong (2017)\n🎖️ Sertifikasi Junior Web Developer – Digital Talent Scholarship (2025)\n🥈 Peserta INNOVILLEAGUE 2025`;
         }
 
-        // Kamera / hobi
-        if (/kamera|foto|fotografi|canon/.test(q)) {
-            return `Selain coding, Ergus juga memiliki kemampuan mengoperasikan kamera DSLR **Canon 600D** untuk keperluan dokumentasi dan fotografi. Kemampuan ini sering dimanfaatkan dalam kegiatan kepanitiaan dan organisasi.`;
+        // Hobi & Minat
+        if (/hobi|hobby|kesukaan|senang|gemar|kamera|foto|fotografi|canon|game|gaming|psikologi/.test(q)) {
+            return `Selain coding, Ergus punya beberapa hobi menarik:
+📸 **Fotografi:** Mahir mengoperasikan kamera DSLR **Canon 600D**, sering jadi andalan dokumentasi di berbagai organisasi.
+🧠 **Psikologi:** Senang mengeksplorasi perilaku manusia dan berbagi perspektif (salah satu favoritnya adalah membedah makna kehidupan dari film seperti *My Name Is Khan*).
+🎮 **Gaming:** Suka bermain dan mengoleksi game berbasis web (HTML) maupun Python.
+
+Ergus percaya bahwa kombinasi teknologi, seni, dan pemahaman terhadap manusia adalah kunci membangun solusi digital yang berdampak!`;
         }
 
         // GitHub / sosmed
@@ -419,7 +424,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Pertanyaan tidak dikenali
-        return `Hmm, pertanyaan yang menarik! 🤔 Saya bisa menjawab pertanyaan seputar Ergus seperti:\n• Keahlian & tech stack\n• Proyek yang dikerjakan\n• Riwayat pendidikan\n• Pengalaman organisasi\n• Prestasi & sertifikasi\n• Cara menghubungi Ergus\n\nApa yang ingin kamu tahu?`;
+        return `Hmm, saya belum punya informasi spesifik tentang itu. 🤔 Tapi saya tahu banyak hal lain tentang Ergus, seperti:
+• **Keahlian:** Tech stack Laravel, PHP, dll.
+• **Proyek:** Aplikasi TA, E-Commerce, Inventaris.
+• **Organisasi:** Pengalaman di ILC, HMJMI, GMSPP.
+• **Hobi:** Fotografi (Canon 600D), Psikologi, & Gaming.
+• **Kontak:** Email, WA, & Media Sosial.
+
+Apa ada salah satu dari topik di atas yang ingin kamu tanyakan?`;
     };
 
     // ---------- Toggle Chat ----------
