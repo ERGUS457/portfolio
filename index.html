@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="maximal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -53,8 +52,8 @@
                 <div class="theme-switch-wrapper">
                     <i class='bx bxs-sun' id="icon-sun"></i>
                     <label class="theme-switch" for="checkbox">
-                        <input type="checkbox" id="checkbox" />
-                        <div class="slider round"></div>
+                        <input type="checkbox" id="checkbox" aria-label="Ganti tema terang dan gelap" />
+                        <div class="slider round" aria-hidden="true"></div>
                     </label>
                     <i class='bx bxs-moon' id="icon-moon"></i>
                 </div>
@@ -289,7 +288,7 @@
                 <!-- Proyek 1 -->
                 <div class="project-card glass-card">
                     <a href="https://www.youtube.com/watch?v=C2FofYKtrOM" target="_blank" rel="noopener" class="project-thumbnail-link">
-                        <img src="https://img.youtube.com/vi/C2FofYKtrOM/hqdefault.jpg" alt="Sistem Informasi Panti Asuhan" class="project-thumbnail">
+                        <img src="https://img.youtube.com/vi/C2FofYKtrOM/hqdefault.jpg" loading="lazy" decoding="async" alt="Sistem Informasi Panti Asuhan" class="project-thumbnail">
                         <div class="play-icon-overlay"><i class='bx bx-play-circle'></i></div>
                         <div class="project-number">01</div>
                     </a>
@@ -307,7 +306,7 @@
                 <!-- Proyek 2 -->
                 <div class="project-card glass-card">
                     <a href="https://www.youtube.com/watch?v=PzLXgUji89E" target="_blank" rel="noopener" class="project-thumbnail-link">
-                        <img src="https://img.youtube.com/vi/PzLXgUji89E/hqdefault.jpg" alt="Sistem Manajemen Inventaris UKMI Fastabiqul Khairat" class="project-thumbnail">
+                        <img src="https://img.youtube.com/vi/PzLXgUji89E/hqdefault.jpg" loading="lazy" decoding="async" alt="Sistem Manajemen Inventaris UKMI Fastabiqul Khairat" class="project-thumbnail">
                         <div class="play-icon-overlay"><i class='bx bx-play-circle'></i></div>
                         <div class="project-number">02</div>
                     </a>
@@ -325,7 +324,7 @@
                 <!-- Proyek 3 -->
                 <div class="project-card glass-card">
                     <a href="https://www.youtube.com/watch?v=rqz3MNKvMf4" target="_blank" rel="noopener" class="project-thumbnail-link">
-                        <img src="https://img.youtube.com/vi/rqz3MNKvMf4/hqdefault.jpg" alt="Aplikasi Pengelolaan Desa Berbasis PBO" class="project-thumbnail">
+                        <img src="https://img.youtube.com/vi/rqz3MNKvMf4/hqdefault.jpg" loading="lazy" decoding="async" alt="Aplikasi Pengelolaan Desa Berbasis PBO" class="project-thumbnail">
                         <div class="play-icon-overlay"><i class='bx bx-play-circle'></i></div>
                         <div class="project-number">03</div>
                     </a>
@@ -361,7 +360,7 @@
                 <!-- Proyek 5 -->
                 <div class="project-card glass-card">
                     <a href="https://www.youtube.com/watch?v=kLbmQA7hBPY" target="_blank" rel="noopener" class="project-thumbnail-link">
-                        <img src="https://img.youtube.com/vi/kLbmQA7hBPY/hqdefault.jpg" alt="Tutorial Instalasi Windows" class="project-thumbnail">
+                        <img src="https://img.youtube.com/vi/kLbmQA7hBPY/hqdefault.jpg" loading="lazy" decoding="async" alt="Tutorial Instalasi Windows" class="project-thumbnail">
                         <div class="play-icon-overlay"><i class='bx bx-play-circle'></i></div>
                         <div class="project-number">05</div>
                     </a>
@@ -781,7 +780,7 @@
             </div>
         </div>
         <form class="chat-input-form" id="chat-form" autocomplete="off">
-            <input type="text" id="chat-input" placeholder="Ketik pertanyaan Anda..." autocomplete="off" maxlength="500">
+            <input type="text" id="chat-input" placeholder="Ketik pertanyaan Anda..." aria-label="Pertanyaan untuk asisten AI" autocomplete="off" maxlength="500">
             <button type="submit" id="send-btn" aria-label="Kirim pesan">
                 <i class='bx bxs-send'></i>
             </button>
