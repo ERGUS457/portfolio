@@ -282,7 +282,15 @@ h2 {
 
 h3 { text-shadow: 3px 3px 0 var(--mx-cyan); }
 
-/* "highlight" jadi stiker penuh, bukan garis bawah halus */
+/* "highlight" jadi stiker penuh, bukan garis bawah halus.
+   Penting: style.css memberi .highlight "background-clip: text" +
+   "-webkit-text-fill-color: transparent" supaya teksnya jadi gradier.
+   Aturan itu masih berlaku di sini kalau tidak dibatalkan, dan efeknya
+   merusak: latar kuning terklip ke bentuk huruf, lalu teks tinta gelap
+   yang opaque menimpanya -- kuningnya tidak pernah terlihat, dan yang
+   tampil adalah huruf gelap di atas latar gelap section (1.02:1).
+   Jadi clipping harus dikembalikan ke border-box dan text-fill
+   dikunci, baik untuk mode gelap maupun terang. */
 .highlight {
     display: inline-block;
     background: var(--mx-yellow) !important;
@@ -291,14 +299,18 @@ h3 { text-shadow: 3px 3px 0 var(--mx-cyan); }
     border: var(--mx-border) solid #14002E;
     box-shadow: 5px 5px 0 var(--mx-pink);
     transform: rotate(-2deg);
-    -webkit-text-fill-color: #14002E;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #14002E !important;
 }
 
 body.light-mode .highlight {
     background: var(--mx-pink) !important;
-    color: #FFF6E9 !important;
+    color: #14002E !important;
     border-color: #14002E;
-    -webkit-text-fill-color: #FFF6E9;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #14002E !important;
     box-shadow: 5px 5px 0 var(--mx-yellow);
 }
 
