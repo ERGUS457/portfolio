@@ -565,8 +565,80 @@ footer, .footer-content {
 }
 
 /* ================================================================
-   12. AKSESIBILITAS
+   13. KOREKTIF KONTRAS  (added 27 Sep 2026)
+   ---------------------------------------------------------------
+   Rasio hasil hitung WCAG 2.1:
+     .btn-primary / .exp-tab.active  3.27:1  -> 5.61:1
+     .chat-header / .social-btn      3.65:1  -> 5.02:1
+     .logo (terang)                  1.52:1  -> 6.23:1
+     .skill-cat-header (terang)      1.70:1  -> 6.23:1
+     .project-number (terang)        3.50:1  -> 6.12:1
+
+   Aturan: teks terang HANYA di atas latar gelap. Di atas pink,
+   violet, cyan, kuning, dan hijau selalu pakai tinta #14002E.
    ================================================================ */
+
+:root {
+    --mx-ink:      #14002E;   /* teks di atas semua aksen terang */
+    --mx-ink-pink: #C20057;   /* pink gelap, aman di atas putih/krem */
+    --mx-ink-cyan: #006A80;   /* teal gelap, pengganti cyan di mode terang */
+    --mx-ink-violet:#5B21B6;
+}
+
+body.light-mode {
+    --mx-ink:      #14002E;
+    --mx-ink-pink: #C20057;
+    --mx-ink-cyan: #006A80;
+    --mx-ink-violet:#5B21B6;
+}
+
+/* --- Aksen terang selalu bertinta gelap --- */
+.btn-primary, .btn-submit,
+.social-btn,
+.ai-chat-button {
+    color: var(--mx-ink) !important;
+}
+
+.exp-tab.active { color: var(--mx-ink) !important; }
+.chat-header { color: var(--mx-ink) !important; }
+.chat-header * { color: var(--mx-ink) !important; }
+.ai-chat-container .chat-status,
+.ai-chat-container .chat-pulse { color: var(--mx-ink) !important; }
+
+/* Ikon tombol chat ikut tinta gelap agar tidak tenggelam */
+.ai-chat-button i,
+.btn-primary i,
+.btn-secondary i,
+.social-btn i { color: var(--mx-ink) !important; }
+
+/* --- Mode terang: ganti cyan/pink teks jadi versi gelap --- */
+body.light-mode .logo { color: var(--mx-ink-cyan) !important; }
+body.light-mode .logo-bracket { color: var(--mx-ink-pink) !important; }
+body.light-mode .skill-cat-header {
+    color: var(--mx-ink-cyan) !important;
+    border-bottom-color: var(--mx-ink-cyan) !important;
+}
+body.light-mode .project-number,
+body.light-mode .stat-divider { color: var(--mx-ink-pink) !important; }
+body.light-mode .highlight { color: var(--mx-ink) !important; }
+body.light-mode .nav-links a:hover,
+body.light-mode .nav-links a.active { color: var(--mx-ink) !important; }
+
+/* Latar terang: tombol pink tetap bertinta gelap */
+body.light-mode .btn-primary:hover,
+body.light-mode .btn-submit:hover,
+body.light-mode .ai-chat-button { color: var(--mx-ink) !important; }
+
+/* Mode terang: judul gradien di atas krem perlu bayangan yang cukup */
+body.light-mode .hero-text h1,
+body.light-mode .stat-num {
+    filter: drop-shadow(3px 3px 0 var(--mx-ink));
+}
+
+/* Teks kecil di atas hijau/kuning: pastikan bobot tetap tebal */
+.skill-tag, .project-tag, .contact-chip { font-weight: 700; }
+
+
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
