@@ -1,0 +1,583 @@
+/* ================================================================
+   MAXIMALIST THEME — "Neon Night Market / Pop Brutalist"
+   ---------------------------------------------------------------
+   Di-load SETELAH style.css, jadi semua di sini adalah override.
+   Cara membatalkan: hapus satu <link> di index.html.
+   Struktur asli tidak disentuh sama sekali.
+   ================================================================ */
+
+:root {
+    /* --- PALET: bentrokkan sengaja, bukan harmoni --- */
+    --mx-pink:    #FF2E88;
+    --mx-green:   #00FFA3;
+    --mx-yellow:  #FFD400;
+    --mx-orange:  #FF6B00;
+    --mx-cyan:    #00D9FF;
+    --mx-violet:  #9B5CFF;
+    --mx-black:   #14002E;
+
+    /* --- MODE GELAP (default) --- */
+    --bg-main:        #1A0033;
+    --bg-card:        #240046;
+    --bg-card-hover:  #32005E;
+    --border-color:   #FF2E88;
+    --border-hover:   #00FFA3;
+    --text-primary:   #FFF6E9;
+    --text-secondary: #C9B8E8;
+    --accent:         #FF2E88;
+    --accent-2:       #00FFA3;
+    --accent-dark:    #FFD400;
+    --glow:           rgba(255,46,136,0.45);
+    --glow-strong:    rgba(255,46,136,0.8);
+    --gradient-hero:  linear-gradient(135deg, #FF2E88 0%, #9B5CFF 45%, #00D9FF 100%);
+    --shadow-card:    8px 8px 0 #FF2E88;
+    --shadow-glow:    10px 10px 0 #FFD400;
+    --radius-card:    0px;
+    --radius-btn:     0px;
+    --mx-border:      3px;
+    --mx-font-display: 'Bungee', 'Impact', sans-serif;
+    --mx-font-body:    'Space Grotesk', 'Inter', sans-serif;
+    --mx-font-mono:    'Space Mono', 'Fira Code', monospace;
+}
+
+body.light-mode {
+    --bg-main:        #FFF1D6;
+    --bg-card:        #FFFFFF;
+    --bg-card-hover:  #FFE9F4;
+    --border-color:   #14002E;
+    --border-hover:   #FF2E88;
+    --text-primary:   #14002E;
+    --text-secondary: #4B2A7A;
+    --accent:         #FF2E88;
+    --accent-2:       #7B2FFF;
+    --accent-dark:    #006B3C;
+    --glow:           rgba(255,46,136,0.3);
+    --glow-strong:    rgba(255,46,136,0.55);
+    --shadow-card:    8px 8px 0 #14002E;
+    --shadow-glow:    10px 10px 0 #FF2E88;
+}
+
+/* ================================================================
+   1. FONDASI
+   ================================================================ */
+
+body {
+    font-family: var(--mx-font-body);
+    font-weight: 500;
+    background-color: var(--bg-main);
+    /* motif maximalis: grid miring + titik, dua lapisan */
+    background-image:
+        radial-gradient(circle at 1px 1px, var(--mx-pink) 1px, transparent 0),
+        repeating-linear-gradient(
+            45deg,
+            rgba(155,92,255,0.10) 0px,
+            rgba(155,92,255,0.10) 2px,
+            transparent 2px,
+            transparent 22px
+        );
+    background-size: 26px 26px, auto;
+    letter-spacing: -0.01em;
+}
+
+body.light-mode {
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(20,0,46,0.22) 1px, transparent 0),
+        repeating-linear-gradient(
+            45deg,
+            rgba(255,46,136,0.10) 0px,
+            rgba(255,46,136,0.10) 3px,
+            transparent 3px,
+            transparent 24px
+        );
+    background-size: 24px 24px, auto;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: var(--mx-font-display);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+/* Orb halus & noise = estetika minimal. Matiin, ganti yang keras. */
+.bg-orbs, .noise-overlay { display: none !important; }
+
+::selection { background: var(--mx-green); color: #14002E; }
+
+/* ================================================================
+   2. HIASAN SITUSAN (pseudo-element dekoratif)
+   ================================================================ */
+
+/* Teks berjalan di tepi bawah layar */
+body::before {
+    content: '';
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    height: 12px;
+    z-index: 9000;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--mx-pink) 0px,  var(--mx-pink) 14px,
+        var(--mx-yellow) 14px, var(--mx-yellow) 28px,
+        var(--mx-green) 28px,  var(--mx-green) 42px,
+        var(--mx-cyan) 42px,   var(--mx-cyan) 56px
+    );
+    animation: mx-slide 6s linear infinite;
+}
+
+@keyframes mx-slide {
+    to { background-position: 224px 0; }
+}
+
+/* Balok berputar di sudut kiri atas */
+html::before {
+    content: '';
+    position: fixed;
+    top: 90px; left: -30px;
+    width: 90px; height: 90px;
+    z-index: 8999;
+    pointer-events: none;
+    background: var(--mx-yellow);
+    border: var(--mx-border) solid #14002E;
+    transform: rotate(18deg);
+    animation: mx-float 7s ease-in-out infinite;
+}
+
+/* Lingkaran di sudut kanan bawah */
+html::after {
+    content: '';
+    position: fixed;
+    bottom: 40px; right: -35px;
+    width: 110px; height: 110px;
+    z-index: 8999;
+    pointer-events: none;
+    background: var(--mx-green);
+    border: var(--mx-border) solid #14002E;
+    border-radius: 50%;
+    animation: mx-float 9s ease-in-out infinite reverse;
+}
+
+@keyframes mx-float {
+    0%, 100% { transform: rotate(18deg) translateY(0); }
+    50%      { transform: rotate(-12deg) translateY(-26px); }
+}
+
+/* Kursor jadi kotak kuning solid, bukan titik kaca */
+.cursor, .cursor-trail {
+    background: var(--mx-yellow) !important;
+    border: 2px solid #14002E;
+    mix-blend-mode: normal !important;
+}
+
+/* ================================================================
+   3. MARQUEE
+   ================================================================ */
+
+.mx-marquee {
+    position: relative;
+    overflow: hidden;
+    background: var(--mx-yellow);
+    border-bottom: var(--mx-border) solid #14002E;
+    padding: 10px 0;
+    margin-bottom: 0;
+}
+
+.mx-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: mx-marquee 22s linear infinite;
+}
+
+.mx-marquee__track span {
+    font-family: var(--mx-font-display);
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: #14002E;
+    white-space: nowrap;
+    padding-right: 2.5rem;
+}
+
+@keyframes mx-marquee {
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mx-marquee__track,
+    body::before,
+    html::before,
+    html::after { animation: none !important; }
+}
+
+/* ================================================================
+   4. KARTU — dari kaca tipis jadi blok bertumpuk keras
+   ================================================================ */
+
+.glass-card,
+.about-card,
+.project-card,
+.edu-card,
+.achievement-card,
+.info-card,
+.contact-info-card,
+.edu-detail-box,
+.project-info,
+.form-field,
+.exp-tab-content,
+.about-quote {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--bg-card) !important;
+    border: var(--mx-border) solid var(--border-color) !important;
+    border-radius: var(--radius-card) !important;
+    box-shadow: var(--shadow-card) !important;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.18s ease,
+                background-color 0.18s ease;
+}
+
+.glass-card:hover,
+.about-card:hover,
+.project-card:hover,
+.edu-card:hover,
+.achievement-card:hover,
+.info-card:hover,
+.contact-info-card:hover {
+    transform: translate(-3px, -3px) rotate(-0.5deg);
+    box-shadow: 12px 12px 0 var(--mx-cyan) !important;
+    border-color: var(--mx-green) !important;
+    background: var(--bg-card-hover) !important;
+}
+
+/* Segitiga kertas (seperti label washi) di atas tiap kartu */
+.glass-card::before,
+.project-card::before,
+.edu-card::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    right: 22px;
+    width: 92px;
+    height: 28px;
+    background: var(--mx-green);
+    border: 2px solid #14002E;
+    transform: rotate(4deg);
+    opacity: 0.92;
+    pointer-events: none;
+}
+
+.project-card { position: relative; overflow: visible; }
+.edu-card, .glass-card { position: relative; }
+
+/* ================================================================
+   5. TIPOGRAFI
+   ================================================================ */
+
+h2 {
+    font-size: clamp(2rem, 6vw, 3.4rem) !important;
+    line-height: 0.98;
+    text-shadow: 4px 4px 0 var(--mx-violet);
+}
+
+h3 { text-shadow: 3px 3px 0 var(--mx-cyan); }
+
+/* "highlight" jadi stiker penuh, bukan garis bawah halus */
+.highlight {
+    display: inline-block;
+    background: var(--mx-yellow) !important;
+    color: #14002E !important;
+    padding: 0.05em 0.35em;
+    border: var(--mx-border) solid #14002E;
+    box-shadow: 5px 5px 0 var(--mx-pink);
+    transform: rotate(-2deg);
+    -webkit-text-fill-color: #14002E;
+}
+
+body.light-mode .highlight {
+    background: var(--mx-pink) !important;
+    color: #FFF6E9 !important;
+    border-color: #14002E;
+    -webkit-text-fill-color: #FFF6E9;
+    box-shadow: 5px 5px 0 var(--mx-yellow);
+}
+
+.section-label {
+    font-family: var(--mx-font-mono) !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mx-cyan) !important;
+    border: 2px solid var(--mx-cyan);
+    display: inline-block;
+    padding: 3px 12px;
+    transform: rotate(-1.5deg);
+}
+
+body.light-mode .section-label {
+    color: #14002E !important;
+    border-color: #14002E;
+    background: var(--mx-cyan);
+}
+
+.hero-greeting { font-family: var(--mx-font-mono) !important; }
+
+.hero-text h1 {
+    background: var(--gradient-hero) !important;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(5px 5px 0 #14002E);
+}
+
+p, li, .stat-label, .contact-info-value {
+    font-weight: 500;
+}
+
+/* ================================================================
+   6. TOMBOL
+   ================================================================ */
+
+.btn, .btn-primary, .btn-secondary, .btn-submit, .social-btn, .project-link {
+    font-family: var(--mx-font-display) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: var(--mx-border) solid #14002E !important;
+    border-radius: 0 !important;
+    box-shadow: 6px 6px 0 #14002E !important;
+    transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+}
+
+.btn:hover, .btn-primary:hover, .btn-secondary:hover, .social-btn:hover {
+    transform: translate(3px, 3px) !important;
+    box-shadow: 2px 2px 0 #14002E !important;
+}
+
+.btn-primary, .btn-submit {
+    background: var(--mx-pink) !important;
+    color: #FFF6E9 !important;
+}
+
+.btn-secondary, .project-link {
+    background: var(--mx-cyan) !important;
+    color: #14002E !important;
+}
+
+.btn-primary:hover, .btn-submit:hover { background: var(--mx-green) !important; }
+.btn-secondary:hover, .project-link:hover { background: var(--mx-yellow) !important; }
+
+.social-btn {
+    background: var(--mx-violet) !important;
+    color: #FFF6E9 !important;
+}
+
+/* ================================================================
+   7. BADGE & TAG
+   ================================================================ */
+
+.hero-badge, .top-badge, .bottom-badge, .hero-floating-badge,
+.tl-badge, .ta-badge, .edu-year-badge {
+    font-family: var(--mx-font-mono) !important;
+    font-weight: 700;
+    background: var(--mx-yellow) !important;
+    color: #14002E !important;
+    border: var(--mx-border) solid #14002E !important;
+    box-shadow: 4px 4px 0 var(--mx-pink) !important;
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.badge-dot {
+    background: var(--mx-green) !important;
+    border: 2px solid #14002E;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 0 !important;
+    animation: mx-blink 0.9s steps(2, start) infinite;
+}
+
+@keyframes mx-blink { to { opacity: 0; } }
+
+.skill-tag, .project-tag, .contact-chip {
+    font-family: var(--mx-font-mono) !important;
+    font-size: 0.78rem !important;
+    font-weight: 700;
+    background: var(--mx-green) !important;
+    color: #14002E !important;
+    border: 2px solid #14002E !important;
+    border-radius: 0 !important;
+    box-shadow: 3px 3px 0 #14002E;
+    padding: 4px 10px !important;
+}
+
+.project-tag {
+    background: var(--mx-yellow) !important;
+}
+
+.skill-cat-header {
+    font-family: var(--mx-font-display) !important;
+    color: var(--mx-cyan) !important;
+    border-bottom: var(--mx-border) dashed var(--mx-cyan) !important;
+}
+
+.project-number, .stat-divider {
+    font-family: var(--mx-font-display) !important;
+    color: var(--mx-pink) !important;
+}
+
+/* ================================================================
+   8. HERO & STATS
+   ================================================================ */
+
+.hero-image-wrap {
+    border: 5px solid #14002E !important;
+    box-shadow: 14px 14px 0 var(--mx-green) !important;
+    transform: rotate(2deg);
+    transition: transform 0.25s ease;
+}
+
+.hero-image-wrap:hover { transform: rotate(-2deg) scale(1.02); }
+
+.hero-image-glow { display: none !important; }
+
+.hero-stats {
+    border: var(--mx-border) solid var(--border-color);
+    box-shadow: var(--shadow-glow);
+    background: var(--bg-card);
+    border-radius: 0;
+}
+
+.stat-item { border-right: var(--mx-border) dashed var(--border-color); }
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+    font-family: var(--mx-font-display) !important;
+    background: var(--gradient-hero) !important;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.scroll-mouse { border: 2px solid var(--mx-cyan); border-radius: 0; }
+
+/* ================================================================
+   9. TIMELINE & TAB
+   ================================================================ */
+
+.timeline::before {
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--mx-pink) 0px, var(--mx-pink) 10px,
+        transparent 10px, transparent 20px
+    ) !important;
+    width: 4px !important;
+}
+
+.timeline-dot {
+    background: var(--mx-yellow) !important;
+    border: var(--mx-border) solid #14002E !important;
+    box-shadow: 4px 4px 0 var(--mx-green) !important;
+}
+
+.exp-tabs { border: var(--mx-border) solid var(--border-color) !important; }
+
+.exp-tab {
+    font-family: var(--mx-font-display) !important;
+    text-transform: uppercase;
+    background: var(--bg-card) !important;
+    border-right: var(--mx-border) solid var(--border-color) !important;
+}
+
+.exp-tab.active {
+    background: var(--mx-pink) !important;
+    color: #FFF6E9 !important;
+    box-shadow: inset 0 -6px 0 var(--mx-yellow);
+}
+
+/* ================================================================
+   10. NAV & FOOTER
+   ================================================================ */
+
+#main-header {
+    background: var(--bg-main) !important;
+    backdrop-filter: none !important;
+    border-bottom: var(--mx-border) solid var(--border-color) !important;
+    box-shadow: 0 6px 0 rgba(255,46,136,0.35);
+}
+
+.nav-links a {
+    font-family: var(--mx-font-display) !important;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    padding: 6px 10px;
+    border: 2px solid transparent;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background: var(--mx-yellow) !important;
+    color: #14002E !important;
+    border-color: #14002E;
+    box-shadow: 4px 4px 0 var(--mx-pink);
+    transform: translateY(-2px);
+}
+
+.logo {
+    font-family: var(--mx-font-display) !important;
+    color: var(--mx-cyan) !important;
+    text-shadow: 3px 3px 0 var(--mx-pink);
+}
+
+.logo-bracket { color: var(--mx-pink); }
+
+.theme-switch .slider {
+    background: var(--mx-violet) !important;
+    border: 2px solid #14002E;
+}
+
+footer, .footer-content {
+    border-top: 6px solid var(--mx-pink);
+    background: var(--bg-card);
+}
+
+.footer-links a { font-weight: 700; }
+.footer-links a:hover { color: var(--mx-yellow) !important; }
+
+/* ================================================================
+   11. CHAT AI
+   ================================================================ */
+
+.ai-chat-container {
+    backdrop-filter: none !important;
+    border: var(--mx-border) solid #14002E !important;
+    border-radius: 0 !important;
+    box-shadow: 10px 10px 0 var(--mx-green) !important;
+}
+
+.chat-header { background: var(--mx-violet) !important; color: #FFF6E9; }
+.user-message { background: var(--mx-yellow) !important; color: #14002E; border-radius: 0 !important; }
+
+.ai-chat-button {
+    background: var(--mx-pink) !important;
+    border: var(--mx-border) solid #14002E !important;
+    border-radius: 0 !important;
+    box-shadow: 6px 6px 0 var(--mx-yellow) !important;
+}
+
+/* ================================================================
+   12. AKSESIBILITAS
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Fokus keyboard tetap jelas walau dekoratif ramai */
+:focus-visible {
+    outline: 3px solid var(--mx-yellow) !important;
+    outline-offset: 3px;
+}
