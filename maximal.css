@@ -334,11 +334,18 @@ body.light-mode .section-label {
 
 .hero-greeting { font-family: var(--mx-font-mono) !important; }
 
+/* PENTING: pakai `background-image` (longhand), bukan `background`
+   (shorthand). Shorthand me-reset background-clip ke border-box dan
+   tanda !important-nya ikut, sehingga mengalahkan
+   `background-clip: text` yang ditulis biasa. Akibatnya huruf tidak
+   digambar (fill transparan) sementara gradien tampil sebagai kotak
+   biasa: teks hilang. Longhand tidak menyentuh background-clip. */
 .hero-text h1 {
-    background: var(--gradient-hero) !important;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-image: var(--gradient-hero) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: none !important;
     filter: drop-shadow(5px 5px 0 #14002E);
 }
 
@@ -463,12 +470,14 @@ p, li, .stat-label, .contact-info-value {
 .stat-item { border-right: var(--mx-border) dashed var(--border-color); }
 .stat-item:last-child { border-right: none; }
 
+/* Sama seperti .hero-text h1: longhand, bukan shorthand `background`. */
 .stat-num {
     font-family: var(--mx-font-display) !important;
-    background: var(--gradient-hero) !important;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-image: var(--gradient-hero) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: none !important;
 }
 
 .scroll-mouse { border: 2px solid var(--mx-cyan); border-radius: 0; }
