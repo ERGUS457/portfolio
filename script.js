@@ -224,35 +224,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ===================================================
-    // 9. COUNTER ANIMASI HERO STATS
+    // 9. COUNTER ANIMASI HERO STATS — dipindah ke listener
+    //    terpisah (lihat di bawah) supaya error dari section
+    //    lain tidak membuat counter mati.
     // ===================================================
-    const statNums = document.querySelectorAll('.stat-num[data-target]');
-
-    const countObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const endValue = parseInt(el.dataset.target);
-                const suffix = el.textContent.replace(/[0-9]/g, '').trim() || '+';
-                let current = 0;
-                const duration = 1200;
-                const stepTime = Math.max(Math.floor(duration / endValue), 20);
-
-                const counter = setInterval(() => {
-                    current++;
-                    el.textContent = current + '+';
-                    if (current >= endValue) {
-                        el.textContent = endValue + '+';
-                        clearInterval(counter);
-                    }
-                }, stepTime);
-
-                countObserver.unobserve(el);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    statNums.forEach(el => countObserver.observe(el));
 
     // ===================================================
     // 10. CONTACT FORM (AJAX + FORMSPREE)
@@ -311,6 +286,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+});
+
+// ====================================================
+// 9. COUNTER ANIMASI HERO STATS (listener terpisah)
+// ====================================================
+// Dipisah dari listener utama supaya error di section lain
+// (mis. matchMedia) tidak membuat counter berhenti di 0.
+// Hero selalu terlihat saat load, jadi animasi langsung jalan
+// tanpa IntersectionObserver.
+document.addEventListener('DOMContentLoaded', () => {
+    const statNums = document.querySelectorAll('.stat-num[data-target]');
+
+    statNums.forEach(el => {
+        const endValue = parseInt(el.dataset.target, 10);
+        if (!endValue || endValue <= 0) return;
+
+        let current = 0;
+        const duration = 1200;
+        const stepTime = Math.max(Math.floor(duration / endValue), 20);
+
+        const counter = setInterval(() => {
+            current++;
+            el.textContent = current + '+';
+            if (current >= endValue) {
+                el.textContent = endValue + '+';
+                clearInterval(counter);
+            }
+        }, stepTime);
+    });
 });
 
 // ====================================================
