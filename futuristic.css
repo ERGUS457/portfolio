@@ -1,0 +1,1027 @@
+/* ================================================================
+   FUTURISTIC THEME — "Deep Space Interface"
+   ---------------------------------------------------------------
+   Di-load SETELAH style.css, jadi semua di sini adalah override.
+   Cara membatalkan: hapus satu <link> di index.html.
+   Struktur asli tidak disentuh sama sekali.
+
+   Arah desain: ruang dalam yang tenang, kaca dan cahaya, garis tipis,
+   sudut membulat, gerak lambat. Aksen sian Listrik untuk fokus dan
+   navigasi, magenta dan violet untuk momentum.
+
+   Aturan yang dipakai di seluruh file ini:
+     - Teks terang HANYA di atas latar gelap.
+     - Teks aksen di atas permukaan terang memakai --fx-ink-*.
+     - Judul gradien memakai `background-image` (longhand), bukan
+       `background` (shorthand), lalu clip-nya dikunci !important.
+   ================================================================ */
+
+:root {
+    /* --- AKSEN --- */
+    --fx-cyan:     #22D3EE;   /* fokus, navigasi, data */
+    --fx-blue:     #3B82F6;
+    --fx-violet:   #8B5CF6;
+    --fx-magenta:  #F035C8;
+    --fx-lime:     #4ADE80;
+
+    /* --- MODE GELAP (default): ruang dalam --- */
+    --bg-main:        #060814;
+    --bg-card:        rgba(148, 197, 255, 0.045);
+    --bg-card-hover:  rgba(148, 197, 255, 0.085);
+    --border-color:   rgba(148, 197, 255, 0.16);
+    --border-hover:   rgba(34, 211, 238, 0.55);
+    --text-primary:   #E9F1FF;
+    --text-secondary: #9DB0D0;
+    --accent:         #22D3EE;
+    --accent-2:       #8B5CF6;
+    --accent-dark:    #F035C8;
+    --glow:           rgba(34, 211, 238, 0.18);
+    --glow-strong:    rgba(34, 211, 238, 0.42);
+    --gradient-hero:  linear-gradient(112deg, #22D3EE 0%, #8B5CF6 52%, #F035C8 100%);
+    --shadow-card:    0 18px 44px -18px rgba(0, 0, 0, 0.85);
+    --shadow-glow:    0 0 34px -6px rgba(34, 211, 238, 0.42);
+    --radius-card:    16px;
+    --radius-btn:     12px;
+    --transition:     0.42s cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* --- Tinta: teks aksen. Di mode gelap harus CUKUP TERANG,
+           di mode terang harus CUKUP GELAP. Nama "--ink" dipakai untuk
+           dua arah sekaligus, jadi nilainya berbeda per mode. --- */
+    --fx-ink:         #060814;   /* di atas gradien terang */
+    --fx-ink-cyan:    #22D3EE;   /* di atas permukaan gelap */
+    --fx-ink-violet:  #A78BFA;   /* di atas permukaan gelap */
+    --fx-ink-magenta: #F035C8;
+
+    --fx-font-display: 'Orbitron', 'Space Grotesk', sans-serif;
+    --fx-font-body:    'Space Grotesk', 'Inter', sans-serif;
+    --fx-font-mono:    'Space Mono', 'Fira Code', monospace;
+
+    /* Isi aksen dan teks yang ditaruh di atasnya. Di mode gelap
+       gradasinya terang, jadi teksnya tinta gelap. Di mode terang
+       gradasinya gelap, jadi teksnya putih. Gradient gelap di atas
+       teks putih: 5.36:1 di stop paling terang. */
+    --fx-accent-fill:   linear-gradient(120deg, #22D3EE 0%, #A78BFA 52%, #F035C8 100%);
+    --fx-on-accent:     #060814;
+}
+
+body.light-mode {
+    /* --- MODE TERANG: es dan baja, bukan putih datar --- */
+    --bg-main:        #EEF3FA;
+    --bg-card:        rgba(255, 255, 255, 0.86);
+    --bg-card-hover:  rgba(255, 255, 255, 1);
+    --border-color:   rgba(6, 8, 20, 0.12);
+    --border-hover:   rgba(14, 116, 144, 0.6);
+    --text-primary:   #060814;
+    --text-secondary: #3F5570;
+    --accent:         #0E7490;
+    --accent-2:       #6D28D9;
+    --accent-dark:    #9D24A8;
+    --glow:           rgba(14, 116, 144, 0.14);
+    --glow-strong:    rgba(14, 116, 144, 0.3);
+    --gradient-hero:  linear-gradient(112deg, #0E7490 0%, #6D28D9 52%, #9D24A8 100%);
+    --shadow-card:    0 18px 40px -20px rgba(6, 8, 20, 0.28);
+    --shadow-glow:    0 0 30px -8px rgba(14, 116, 144, 0.34);
+
+    --fx-cyan:     #0E7490;
+    --fx-blue:     #1D4ED8;
+    --fx-violet:   #6D28D9;
+    --fx-magenta:  #9D24A8;
+    --fx-lime:     #15803D;
+
+    /* Teks di atas permukaan terang: semuanya digelapkan. #0E7490
+       hanya 4.35:1 di atas rwetan cyan 0.14 (#DBEAEF), jadi diturunkan
+       ke #08566B yang menghasilkan 6.58:1. */
+    --fx-ink:         #060814;
+    --fx-ink-cyan:    #08566B;
+    --fx-ink-violet:  #6D28D9;
+    --fx-ink-magenta: #9D24A8;
+
+    --fx-accent-fill: linear-gradient(120deg, #0E7490 0%, #6D28D9 52%, #9D24A8 100%);
+    --fx-on-accent:   #FFFFFF;
+}
+
+/* ================================================================
+   1. FONDASI
+   ================================================================ */
+
+body {
+    font-family: var(--fx-font-body);
+    font-weight: 400;
+    background-color: var(--bg-main);
+    /* Tiga sumber cahaya jauh + garis grid halus. Lapisan pertama
+       di atas warna dasar, sisanya menyatu. */
+    background-image:
+        radial-gradient(1100px 620px at 12% -8%, rgba(34, 211, 238, 0.20), transparent 62%),
+        radial-gradient(900px 700px at 88% 4%, rgba(139, 92, 246, 0.18), transparent 60%),
+        radial-gradient(1000px 800px at 50% 108%, rgba(240, 53, 200, 0.12), transparent 62%),
+        repeating-linear-gradient(
+            0deg,
+            rgba(148, 197, 255, 0.045) 0px,
+            rgba(148, 197, 255, 0.045) 1px,
+            transparent 1px,
+            transparent 68px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(148, 197, 255, 0.045) 0px,
+            rgba(148, 197, 255, 0.045) 1px,
+            transparent 1px,
+            transparent 68px
+        );
+    background-attachment: fixed;
+    letter-spacing: 0;
+    line-height: 1.65;
+}
+
+body.light-mode {
+    background-image:
+        radial-gradient(1100px 620px at 12% -8%, rgba(14, 116, 144, 0.10), transparent 62%),
+        radial-gradient(900px 700px at 88% 4%, rgba(109, 40, 217, 0.09), transparent 60%),
+        radial-gradient(1000px 800px at 50% 108%, rgba(157, 36, 168, 0.06), transparent 62%),
+        repeating-linear-gradient(
+            0deg,
+            rgba(6, 8, 20, 0.035) 0px,
+            rgba(6, 8, 20, 0.035) 1px,
+            transparent 1px,
+            transparent 68px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(6, 8, 20, 0.035) 0px,
+            rgba(6, 8, 20, 0.035) 1px,
+            transparent 1px,
+            transparent 68px
+        );
+}
+
+/* Judul: huruf teknos, lebar, tanpa paksa huruf besar. */
+h1, h2, h3, h4, h5 {
+    font-family: var(--fx-font-display);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--text-primary);
+}
+
+p, li { line-height: 1.7; }
+
+/* Orb dan noise bawaan berupa blur besar; untuk tema ini lapisan itu
+   justru sudah benar, jadi hanya diturunkan opacity-nya. */
+.bg-orbs { opacity: 0.5 !important; }
+.noise-overlay { opacity: 0.22 !important; mix-blend-mode: overlay; }
+
+::selection { background: var(--fx-cyan); color: var(--fx-ink); }
+body.light-mode ::selection { background: var(--fx-ink-cyan); color: #FFFFFF; }
+
+/* ================================================================
+   2. KACA: KARTU DAN PERMUKAAN
+   ---------------------------------------------------------------
+   Reyes tipis, tepi atas lebih terang (cahaya dari atas), blur di
+   belakang. Semua tanpa garis tebal.
+   ================================================================ */
+
+.glass-card,
+.hero-image-wrap,
+.chat-header,
+.form-field input,
+.form-field textarea,
+.exp-tabs-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    box-shadow: var(--shadow-card);
+}
+
+/* Cahaya tepi atas: pseudo-element tipis di dalam border. */
+.glass-card { position: relative; overflow: hidden; }
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(34, 211, 238, 0.55),
+        transparent
+    );
+    pointer-events: none;
+}
+
+.glass-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-card), var(--shadow-glow);
+    transform: translateY(-3px);
+    transition: transform var(--transition), box-shadow var(--transition),
+                border-color var(--transition), background var(--transition);
+}
+
+/* ================================================================
+   3. TAJUK GRADIEN
+   ---------------------------------------------------------------
+   PENTING: `background-image` adalah longhand dan tidak menyentuh
+   background-clip. Shortcut `background` akan me-reset clip ke
+   border-box dan menimpanya, sehingga huruf tidak tergambar.
+   Keyframe text-shimmer dari style.css juga dimatikan: pada
+   background-position -100% ke -200% dengan background-size 200%,
+   gradien meleset keluar kotak teks dan teks ikut lenyap.
+   ================================================================ */
+
+.hero-text h1 {
+    background-image: var(--gradient-hero) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: none !important;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    filter: drop-shadow(0 0 26px rgba(34, 211, 238, 0.35));
+}
+
+.stat-num {
+    background-image: var(--gradient-hero) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: none !important;
+    font-weight: 700;
+    filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.3));
+}
+
+body.light-mode .hero-text h1,
+body.light-mode .stat-num {
+    filter: none;
+}
+
+.highlight {
+    /* Lencana, bukan gradien teks: teksnya tetap digambar normal. */
+    background-image: none !important;
+    background-color: var(--bg-card) !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: var(--fx-ink-cyan) !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    padding: 0.1em 0.5em;
+    border: 1px solid var(--border-hover);
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+body.light-mode .highlight {
+    color: var(--fx-ink-cyan) !important;
+}
+
+.section-label {
+    font-family: var(--fx-font-mono) !important;
+    font-size: 0.78rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--fx-ink-cyan) !important;
+}
+
+
+/* Garis pemisah tipis di bawah label, bukan blok tebal. */
+.section-label::after {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 1px;
+    margin-top: 0.7rem;
+    background-image: linear-gradient(90deg, var(--fx-cyan), transparent);
+}
+
+body.light-mode .section-label::after {
+    background-image: linear-gradient(90deg, var(--fx-ink-cyan), transparent);
+}
+
+/* ================================================================
+   4. HERO
+   ================================================================ */
+
+.hero-badge {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 999px !important;
+    padding: 0.4rem 1rem;
+    font-family: var(--fx-font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.badge-dot {
+    background: var(--fx-lime) !important;
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+    animation: fx-pulse 2.4s ease-out infinite;
+}
+
+@keyframes fx-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55); }
+    70%  { box-shadow: 0 0 0 9px rgba(74, 222, 128, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+body.light-mode .badge-dot { animation: none; }
+
+.hero-greeting {
+    font-family: var(--fx-font-mono) !important;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-secondary) !important;
+}
+
+.dynamic-text {
+    font-family: var(--fx-font-mono) !important;
+    font-size: clamp(1rem, 2.4vw, 1.35rem) !important;
+    color: var(--fx-ink-cyan) !important;
+    letter-spacing: 0.06em;
+    min-height: 1.8em;
+}
+
+
+.intro { color: var(--text-secondary) !important; max-width: 60ch; }
+
+.hero-stats {
+    gap: 0 !important;
+    padding: 1.1rem 0 !important;
+    border-top: 1px solid var(--border-color) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.stat-item { border: none !important; }
+
+.stat-label {
+    font-family: var(--fx-font-mono) !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-secondary) !important;
+}
+
+.stat-divider {
+    width: 1px !important;
+    height: 34px !important;
+    background-image: linear-gradient(
+        180deg,
+        transparent,
+        var(--border-hover),
+        transparent
+    ) !important;
+    color: var(--fx-cyan) !important;
+}
+
+
+/* Cincin navigasi: ganti kotak foto jadi lingkaran bercahaya. */
+.hero-image-wrap {
+    border-radius: 50% !important;
+    padding: 10px;
+    border: 1px solid var(--border-hover);
+    box-shadow: var(--shadow-card), var(--shadow-glow);
+    transition: box-shadow var(--transition);
+}
+
+.hero-image-wrap:hover { box-shadow: var(--shadow-card), 0 0 54px -4px rgba(34,211,238,0.6); }
+
+.hero-image {
+    border-radius: 50% !important;
+    border: none !important;
+    filter: saturate(1.05) contrast(1.03);
+}
+
+.hero-image-glow {
+    background-image: radial-gradient(
+        circle,
+        rgba(34, 211, 238, 0.30) 0%,
+        rgba(139, 92, 246, 0.16) 42%,
+        transparent 70%
+    ) !important;
+    filter: blur(26px);
+}
+
+.hero-floating-badge {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-hover) !important;
+    border-radius: 12px !important;
+    font-family: var(--fx-font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-primary) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-card);
+    animation: fx-drift 7s ease-in-out infinite;
+}
+
+body.light-mode .hero-floating-badge {
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+@keyframes fx-drift {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-9px); }
+}
+
+body.light-mode .hero-floating-badge { animation: none; }
+
+/* ================================================================
+   5. TOMBOL
+   ================================================================ */
+
+.btn, .btn-primary, .btn-secondary, .btn-submit,
+.social-btn, .project-link {
+    border-radius: var(--radius-btn) !important;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    border: 1px solid transparent;
+    transition: transform var(--transition), box-shadow var(--transition),
+                background var(--transition), border-color var(--transition);
+}
+
+.btn:hover, .btn-primary:hover, .btn-secondary:hover,
+.social-btn:hover, .project-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-primary, .btn-submit {
+    background-image: var(--fx-accent-fill) !important;
+    color: var(--fx-on-accent) !important;
+    border-color: transparent !important;
+    box-shadow: 0 10px 28px -12px rgba(34, 211, 238, 0.75);
+}
+
+.btn-primary i, .btn-submit i,
+.exp-tab.active i, .ai-chat-button i { color: var(--fx-on-accent) !important; }
+
+.btn-secondary, .project-link {
+    background-color: transparent !important;
+    color: var(--fx-ink-cyan) !important;
+    border-color: var(--border-hover) !important;
+}
+
+.btn-secondary:hover, .project-link:hover {
+    background-color: var(--glow) !important;
+    color: var(--text-primary) !important;
+}
+
+
+.btn-secondary i, .project-link i { color: inherit !important; }
+
+.social-btn {
+    background-color: var(--bg-card) !important;
+    color: var(--fx-ink-cyan) !important;
+    border-color: var(--border-color) !important;
+    width: 44px !important;
+    height: 44px !important;
+}
+
+.social-btn:hover {
+    background-color: var(--glow) !important;
+    border-color: var(--border-hover) !important;
+    color: var(--text-primary) !important;
+}
+
+/* --- Tab pengalaman: pil bergradien, teks ikut mode --- */
+.exp-tabs { border-radius: 999px !important; }
+
+.exp-tab { border-radius: 999px !important; }
+
+.exp-tab.active {
+    background-image: var(--fx-accent-fill) !important;
+    color: var(--fx-on-accent) !important;
+    box-shadow: 0 4px 18px -6px var(--glow-strong) !important;
+}
+
+
+/* ================================================================
+   6. LENCANA, TAG, CHIP
+   ================================================================ */
+
+.skill-tag, .project-tags span, .contact-chip {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    font-weight: 500;
+    font-family: var(--fx-font-mono);
+    font-size: 0.76rem;
+    padding: 0.3rem 0.7rem;
+    transition: border-color var(--transition), color var(--transition),
+                background var(--transition);
+}
+
+.skill-tag:hover, .project-tags span:hover, .contact-chip:hover {
+    border-color: var(--border-hover) !important;
+    color: var(--fx-ink-cyan) !important;
+}
+
+body.light-mode .skill-tag:hover,
+
+.skill-tag.featured {
+    border-color: var(--fx-cyan) !important;
+    color: var(--fx-ink-cyan) !important;
+    background-color: var(--glow) !important;
+}
+
+
+.skill-cat-header {
+    color: var(--fx-ink-cyan) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    font-family: var(--fx-font-display);
+    letter-spacing: 0.05em;
+}
+
+body.light-mode .skill-cat-header {
+    color: var(--fx-ink-cyan) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+/* ================================================================
+   7. PROYEK
+   ================================================================ */
+
+.project-card { padding: 0; }
+
+.project-thumbnail {
+    border-radius: var(--radius-card) var(--radius-card) 0 0 !important;
+    filter: saturate(0.92) brightness(0.94);
+    transition: filter var(--transition);
+}
+
+.project-card:hover .project-thumbnail {
+    filter: saturate(1.08) brightness(1.02);
+}
+
+.play-icon-overlay {
+    border: 1px solid rgba(255, 255, 255, 0.55) !important;
+    background: rgba(6, 8, 20, 0.55) !important;
+    border-radius: 50% !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: background var(--transition), transform var(--transition);
+}
+
+.project-card:hover .play-icon-overlay {
+    background: var(--fx-cyan) !important;
+    transform: scale(1.08);
+}
+
+.project-number {
+    background: rgba(6, 8, 20, 0.72) !important;
+    color: var(--fx-cyan) !important;
+    border: 1px solid var(--border-hover) !important;
+    border-radius: 10px !important;
+    font-family: var(--fx-font-mono);
+    font-weight: 700;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+body.light-mode .project-number {
+    /* Lencana tetap gelap di mode terang, jadi teksnya harus sian
+       terang. --fx-cyan di mode terang sudah digelapkan (#0E7490)
+       dan hanya menghasilkan 3.17:1, jadi dipakai warna tetap. */
+    background: rgba(6, 8, 20, 0.92) !important;
+    color: #22D3EE !important;
+}
+
+.featured-project { border-color: var(--fx-violet) !important; }
+.featured-project::before {
+    background-image: linear-gradient(90deg, var(--fx-violet), var(--fx-magenta), transparent);
+}
+
+.ta-badge, .tl-badge {
+    background-image: none !important;
+    background-color: var(--glow) !important;
+    color: var(--fx-ink-cyan) !important;
+    border: 1px solid var(--border-hover) !important;
+    border-radius: 999px !important;
+    font-family: var(--fx-font-mono);
+    font-weight: 500;
+}
+
+
+/* ================================================================
+   8. TIMELINE PENDIDIKAN
+   ================================================================ */
+
+.timeline::before {
+    background-image: linear-gradient(
+        180deg,
+        transparent,
+        var(--fx-cyan) 12%,
+        var(--fx-violet) 88%,
+        transparent
+    ) !important;
+    width: 2px !important;
+    opacity: 0.55;
+}
+
+.timeline-dot {
+    background: var(--bg-main) !important;
+    border: 2px solid var(--fx-cyan) !important;
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.14);
+    transition: box-shadow var(--transition), background var(--transition);
+}
+
+.active-edu .timeline-dot,
+.timeline-dot:hover {
+    background: var(--fx-cyan) !important;
+    box-shadow: 0 0 0 5px rgba(34, 211, 238, 0.2), 0 0 18px rgba(34, 211, 238, 0.6);
+}
+
+.edu-year-badge {
+    background-color: var(--bg-card) !important;
+    color: var(--fx-ink-cyan) !important;
+    border: 1px solid var(--border-hover) !important;
+    border-radius: 10px !important;
+    font-family: var(--fx-font-mono);
+    font-weight: 700;
+}
+
+
+.edu-major, .timeline-date, .ach-rank {
+    color: var(--fx-ink-violet) !important;
+    font-weight: 600;
+}
+
+body.light-mode .edu-major,
+
+.edu-icon, .ach-icon {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    color: var(--fx-ink-cyan) !important;
+}
+
+
+.edu-detail-box {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    color: var(--text-secondary) !important;
+}
+
+/* ================================================================
+   9. ABOUT, KUTIP, KONTAK
+   ================================================================ */
+
+.about-quote {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-left: 2px solid var(--fx-cyan) !important;
+    border-radius: 4px 14px 14px 4px !important;
+    color: var(--text-secondary) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.about-info-card:hover { border-color: var(--border-hover); }
+
+.contact-info-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-card) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.contact-info-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+.contact-info-label {
+    font-family: var(--fx-font-mono) !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-secondary) !important;
+}
+
+.contact-info-value { color: var(--text-primary) !important; }
+
+.form-field input, .form-field textarea {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-main) !important;
+    border-radius: 10px !important;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-field input:focus, .form-field textarea:focus {
+    border-color: var(--border-hover) !important;
+    box-shadow: 0 0 0 3px var(--glow);
+    outline: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: var(--text-secondary); opacity: 0.75; }
+
+.contact-subtitle { color: var(--text-secondary) !important; }
+
+/* ================================================================
+   10. HEADER, NAVIGASI, FOOTER
+   ================================================================ */
+
+#main-header {
+    background-color: rgba(6, 8, 20, 0.72) !important;
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: none;
+}
+
+body.light-mode #main-header {
+    background-color: rgba(238, 243, 250, 0.8) !important;
+}
+
+.nav-links a {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    position: relative;
+    transition: color var(--transition);
+}
+
+/* Penanda aktif: garis bawah bercahaya, bukan blok. */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background-image: linear-gradient(90deg, var(--fx-cyan), var(--fx-violet));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--text-primary) !important;
+}
+
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+body.light-mode .nav-links a { color: var(--text-secondary) !important; }
+body.light-mode .nav-links a:hover,
+body.light-mode .nav-links a.active { color: var(--text-primary) !important; }
+
+.logo {
+    font-family: var(--fx-font-display) !important;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--text-primary) !important;
+}
+
+.logo-bracket { color: var(--fx-ink-cyan) !important; }
+
+.theme-switch .slider {
+    background-image: linear-gradient(90deg, var(--fx-cyan), var(--fx-violet)) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 0 14px -2px rgba(34, 211, 238, 0.7);
+}
+
+footer, .footer-content {
+    background: transparent;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary) !important;
+}
+
+.footer-links a { color: var(--text-secondary) !important; }
+.footer-links a:hover { color: var(--fx-ink-cyan) !important; }
+
+/* ================================================================
+   11. OBROLAN AI
+   ================================================================ */
+
+.ai-chat-container {
+    background: rgba(6, 8, 20, 0.9) !important;
+    border: 1px solid var(--border-hover) !important;
+    border-radius: 18px !important;
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.9);
+}
+
+body.light-mode .ai-chat-container {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-color: var(--border-hover) !important;
+}
+
+.chat-header {
+    background: var(--bg-card) !important;
+    border-radius: 18px 18px 0 0 !important;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary) !important;
+}
+
+.chat-header-info, .chat-header strong { color: var(--text-primary) !important; }
+
+.chat-status, .chat-pulse { color: var(--text-secondary) !important; }
+
+.chat-avatar {
+    background-image: var(--fx-accent-fill) !important;
+    border-radius: 50%;
+    color: var(--fx-on-accent) !important;
+}
+
+.ai-message {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 14px !important;
+    color: var(--text-primary) !important;
+}
+
+.user-message {
+    background-image: linear-gradient(120deg, rgba(34,211,238,0.22), rgba(139,92,246,0.22)) !important;
+    border-color: var(--border-hover) !important;
+}
+
+body.light-mode .user-message {
+    background-image: linear-gradient(120deg, rgba(14,116,144,0.16), rgba(109,40,217,0.14)) !important;
+}
+
+.chat-input-form input {
+    background: var(--bg-main) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 10px !important;
+    color: var(--text-primary) !important;
+}
+
+.chat-input-form input:focus {
+    border-color: var(--border-hover) !important;
+    box-shadow: 0 0 0 3px var(--glow);
+    outline: none;
+}
+
+.ai-chat-button {
+    background-image: var(--fx-accent-fill) !important;
+    color: var(--fx-on-accent) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 10px 30px -10px rgba(34, 211, 238, 0.8);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.ai-chat-button:hover { transform: scale(1.06); }
+
+/* ================================================================
+   12. HIASAN LAYAR
+   ---------------------------------------------------------------
+   z-index 42: di atas konten statis, di bawah header (99-101),
+   nav-overlay (1000), dan kursor kustom (9998). Di bawah 900px
+   dekorasi disembunyikan karena tidak ada ruang di tepi.
+   ================================================================ */
+
+/* Garis pemindai di tepi bawah, seperti layar HUD. */
+body::before {
+    content: '';
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    height: 2px;
+    z-index: 42;
+    pointer-events: none;
+    background-image: linear-gradient(
+        90deg,
+        transparent,
+        var(--fx-cyan) 20%,
+        var(--fx-violet) 55%,
+        var(--fx-magenta) 80%,
+        transparent
+    );
+    opacity: 0.75;
+}
+
+@keyframes fx-scan {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(14px); }
+}
+
+/* Sudut HUD: dua penjaga tipis, bukan blok besar. */
+html::before, html::after {
+    content: '';
+    position: fixed;
+    width: 78px;
+    height: 78px;
+    z-index: 42;
+    pointer-events: none;
+    border: 1px solid var(--border-hover);
+    opacity: 0.5;
+}
+
+html::before {
+    top: 84px; left: 22px;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 18px 0 0 0;
+}
+
+html::after {
+    bottom: 34px; right: 22px;
+    border-left: none;
+    border-top: none;
+    border-radius: 0 0 18px 0;
+}
+
+body.light-mode html::before, body.light-mode html::after { opacity: 0.75; }
+
+/* Kursor kustom: cincin cahaya, bukan blok. */
+.cursor, .cursor-trail {
+    border-radius: 50% !important;
+    border: 1px solid var(--fx-cyan) !important;
+    background: rgba(34, 211, 238, 0.12) !important;
+    box-shadow: 0 0 16px rgba(34, 211, 238, 0.6);
+    mix-blend-mode: screen;
+}
+
+.cursor-trail {
+    background: transparent !important;
+    border-color: var(--fx-violet) !important;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+body.light-mode .cursor { mix-blend-mode: multiply; }
+
+/* Pita berjalan: tipografi kecil, jarak lebar, sangat redup. */
+.mx-marquee {
+    background-color: rgba(6, 8, 20, 0.55) !important;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+body.light-mode .mx-marquee {
+    background-color: rgba(238, 243, 250, 0.7) !important;
+}
+
+.mx-marquee__track span {
+    font-family: var(--fx-font-mono) !important;
+    font-size: 0.68rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--text-secondary) !important;
+    opacity: 0.75;
+}
+
+@keyframes fx-marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.mx-marquee__track { animation: fx-marquee 38s linear infinite; }
+
+.scroll-mouse {
+    border: 1px solid var(--border-hover) !important;
+    border-radius: 999px !important;
+    background: transparent;
+}
+
+.scroll-wheel {
+    background: var(--fx-cyan) !important;
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+}
+
+.scroll-indicator { color: var(--text-secondary) !important; }
+
+/* ================================================================
+   13. AKSESIBILITAS
+   ================================================================ */
+
+:focus-visible {
+    outline: 2px solid var(--fx-cyan) !important;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+body.light-mode :focus-visible { outline-color: var(--fx-ink-cyan) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .mx-marquee__track { animation: none !important; }
+}
+
+@media (max-width: 900px) {
+    html::before, html::after { display: none; }
+}
+
+/* Di perangkat sentuh tidak ada kursor untuk disembunyikan, dan
+   loop mousemove tetap berjalan tanpa guna. */
+@media (hover: none), (pointer: coarse) {
+    .cursor, .cursor-trail { display: none !important; }
+}
